@@ -1,0 +1,67 @@
+<!--
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <p class="network-name">abcs@0.0.1.bna</p>
+        <p class="navbar-brand">Intelligent Health Record System</p>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="dropdown active">
+            <a class="dropdown-toggle" data-toggle="dropdown">Records</a>
+            <ul class="dropdown-menu scrollable-menu">
+              
+              <li><a [routerLink]="['/General']">General</a></li>
+              
+              <li><a [routerLink]="['/Allergy']">Allergy</a></li>
+              
+              <li><a [routerLink]="['/Complete_Blood_Count']">Complete_Blood_Count</a></li>
+              
+              <li><a [routerLink]="['/Lipid_profile']">Lipid_profile</a></li>
+              
+              <li><a [routerLink]="['/kidney_panel']">kidney_panel</a></li>
+              
+              <li><a [routerLink]="['/PatientKey']">PatientKey</a></li>
+              
+            </ul>
+        </li>
+        <li class="dropdown active">
+          <a class="dropdown-toggle" data-toggle="dropdown">Participants</a>
+          <ul class="dropdown-menu scrollable-menu">
+            
+            <li><a [routerLink]="['/Patient']">Patient</a></li>
+            
+            <li><a [routerLink]="['/HealthProvider']">HealthProvider</a></li>
+            
+          </ul>
+      </li>
+      <li class="dropdown active">
+        <a class="dropdown-toggle" data-toggle="dropdown">Transactions</a>
+        <ul class="dropdown-menu scrollable-menu">
+          
+          <li><a [routerLink]="['/AddAllergy']">AddAllergy</a></li>
+          
+          <li><a [routerLink]="['/RequestRecordSharing']">RequestRecordSharing</a></li>
+          
+          <li><a [routerLink]="['/ShareKey']">ShareKey</a></li>
+          
+          <li><a [routerLink]="['/RevokeMedicalRecordsSharing']">RevokeMedicalRecordsSharing</a></li>
+          
+        </ul>
+    </li>
+      </ul>
+    </div>
+  </nav>
+  
+  <router-outlet></router-outlet>

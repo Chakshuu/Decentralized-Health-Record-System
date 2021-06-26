@@ -1,0 +1,136 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ * Write your model definitions here
+ */
+
+namespace nz.ac.auckland
+
+enum gender {
+o Male
+o Female
+o Other
+}
+
+participant Patient identified by id{
+  o String id
+  o String birthDate
+  o String deathDate optional
+  o String prefix optional
+  o String first
+  o String last 
+  o String ethinicity optional
+  o String gender optional
+  o String address
+  o String publicKey
+  o HealthProvider[] consentedHPs
+}
+
+abstract asset Record identified by id{
+  o String id
+  o String record_date 
+  o String record_code
+  o String record_reasonCode optional
+  o String record_reasonDesc optional
+  --> HealthProvider healthProvider
+  --> Patient patient
+}
+
+asset General extends Record {
+  o String height 
+  o String weight
+  o String BMI
+  o String sugar
+  o String bloodpressure optional
+}
+
+asset Allergy extends Record{
+  o String salt_name
+  o String symptoms
+  o String medication
+  o String allergy_desc optional
+}
+
+asset Complete_Blood_Count extends Record{
+  o String Test_name
+  o String Results
+  o String Units
+  o String Bio_ref_interval
+  o String observation
+}
+
+asset Lipid_profile extends Record{
+  o String testname
+  o String results
+  o String units
+  o String ref_interval
+}
+
+asset kidney_panel extends Record{
+  o String test
+  o String resultt
+  o String units
+  o String interval
+}
+
+participant HealthProvider identified by id {
+  o String id
+  o String name
+  o String phone
+  o String address
+  o String publicKey
+}
+
+asset PatientKey identified by id{
+  o String id
+  --> Patient patient
+  --> HealthProvider healthProvider
+  o String encryptedPatientKeyHPPublic
+}
+
+transaction AddAllergy {
+  o Allergy allergy
+}
+
+transaction RequestRecordSharing {
+  --> Patient patient
+  --> HealthProvider healthProvider
+}
+
+event RequestRecordSharingNotification {
+  --> Patient patient
+  --> HealthProvider healthProvider
+}
+
+transaction ShareKey {
+  --> Patient patient
+  --> HealthProvider healthProvider
+  o String encryptedPatientKeyHPPublic
+}
+
+event ShareKeyNotification {
+  --> Patient patient
+  --> HealthProvider healthProvider
+}
+
+transaction RevokeMedicalRecordsSharing {
+  --> Patient patient
+  --> HealthProvider healthProvider
+}
+
+event RevokeMedicalRecordsSharingNotification {
+  --> Patient patient
+  --> HealthProvider healthProvider
+}
